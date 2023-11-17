@@ -1,0 +1,20 @@
+flowchart LR
+    A([Account state])
+    SN{State.next}
+    SA{stateActions}
+    ISE{internalStateSideEffects}
+    ASE{accountStateSideEffects}
+
+
+    A --> |incoming event| SN
+    SN --> |no transition| A
+    SN --> |state transition| SA
+    SA --> |account state| ASE
+    SA --> |progress state| ISE
+    ASE --> A
+    ISE --> |new event| SN
+    ISE --> |no event| A
+
+
+    classDef default fill:#FC766A, stroke: black;
+    linkStyle default stroke:#FC766A

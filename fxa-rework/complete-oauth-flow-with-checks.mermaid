@@ -1,0 +1,32 @@
+flowchart TD
+    BA[BeginningAuthentication]:::public
+    CA[CompletedAuthentication]
+    A[Authenticated]:::public
+    NA[NotAuthenticated]:::public
+    AAD["handlePublicEvent(authData)"]:::check
+    AE["handleInternalEvent(Error)"]:::check
+    ACS["handleInternalEvent(CompleteOAuthSuccess)"]:::check
+    CCO["checkInternalState(CompleteOAuth(...))"]:::check
+    CSA["checkPublicState(Authenticated)"]:::check
+    CNA["checkPublicState(NotAuthenticated)"]:::check
+    PCO["account.completeOauth(...)"]:::perform
+
+    BA --> |AuthData| AAD
+    AAD --> CA
+    CA --> CCO
+    CCO --> PCO
+    PCO --> |CompletedAuthentication| ACS
+    ACS --> A
+    A --> CSA
+    PCO --> |FailedToCompleteAuth| AE
+    AE --> NA
+    NA --> CNA
+
+    classDef default fill:#FC766A, stroke: black;
+    linkStyle default stroke:#FC766A
+
+    classDef public fill:#0af, color:black, stroke:black;
+    linkStyle 0 stroke:#0af
+
+    classDef check fill:#DDEDAA, color:black, stroke:black;
+    classDef perform fill:#FFC914, color:black, stroke:black;

@@ -1,0 +1,15 @@
+flowchart LR
+    A([Account state]):::public
+    PE{processEvent}
+    ASE{accountStateSideEffects}:::public
+
+    A --> |incoming event| PE
+    PE --> |no transition| A
+    PE --> |account state transition| ASE
+    ASE --> |new event| PE
+    ASE --> |no event| A
+
+
+    classDef default fill:#FC766A, stroke: black;
+    classDef public fill:#0af, color:black, stroke:black
+    linkStyle default stroke:#0af

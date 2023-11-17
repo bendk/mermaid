@@ -1,0 +1,12 @@
+flowchart LR
+    A[NotAuthenticated]:::public --> |Start| B[Initializing]
+    B --> |AccountRestored| C[CompletingAuthentication]
+    C --> |CompletedAuthentication| D[Authenticated]:::public
+    B --> |AccountNotFound| E[NotAuthenticated]:::public
+    C --> |FailedToCompleteAuthRestore| E
+
+    classDef default fill:#FC766A, stroke: black;
+    linkStyle default stroke:#FC766A
+
+    classDef public fill:#0af, color:black, stroke:black
+    linkStyle 0 stroke:#0af

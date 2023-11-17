@@ -1,0 +1,18 @@
+flowchart LR
+    A1[Authenticating]:::public
+    CO[CompleteOAuthFlow]
+    ID[InitializeDevice]
+    A2[Authenticated]:::public
+    AP[AuthenicationProblems]:::public
+
+    A1 --> |AuthData| CO
+    CO --> |Error| A1
+    CO --> |CompleteOAuthFlowSuccess| ID
+    ID --> |Error| AP
+    ID --> |InitializeDeviceSuccess| A2
+
+    classDef default fill:#FC766A, stroke: black;
+    linkStyle default stroke:#FC766A
+
+    classDef public fill:#0af, color:black, stroke:black
+    linkStyle 0 stroke:#0af

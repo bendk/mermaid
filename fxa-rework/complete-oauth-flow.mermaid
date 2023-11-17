@@ -1,0 +1,10 @@
+flowchart LR
+    A[BeginningAuthentication]:::public --> |AuthData| B[CompletingAuthentication]
+    B --> |CompletedAuthentication| C[Authenticated]:::public
+    B --> |FailedToCompleteAuth| D[NotAuthenticated]:::public
+
+    classDef default fill:#FC766A, stroke: black;
+    linkStyle default stroke:#FC766A
+
+    classDef public fill:#0af, color:black, stroke:black
+    linkStyle 0 stroke:#0af
