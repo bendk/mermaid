@@ -1,0 +1,12 @@
+flowchart LR
+    ProcMacros[Rust + proc-macros] --> Metadata[Metadata]
+    UDL[UDL] --> Metadata[Metadata]
+    Metadata --> BindingsIr[Bindings IR]
+    BindingsIr --> KotlinIr[Kotlin IR]
+    BindingsIr --> SwiftIr[Swift IR]
+    BindingsIr --> PythonIr[Python IR]
+    BindingsIr --> RubyIr[Ruby IR]
+    KotlinIr --> Kotlin[Generated Kotlin]
+    SwiftIr --> Swift[Generated Swift]
+    PythonIr --> Python[Generated Python]
+    RubyIr --> Ruby[Generated Ruby]
