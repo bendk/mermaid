@@ -1,0 +1,19 @@
+sequenceDiagram
+  participant Js as JS Layer
+  participant Cpp as C++ Layer
+  participant Rust as Rust Scaffolding
+
+  Js->>+Cpp: call UniffiScaffoling.callAsync
+  Cpp->>+Rust: call scaffolding function
+  Rust-->>-Cpp: return RustFuture handle
+  Cpp-->>-Js: return promise
+
+  loop until RustFuture is ready
+    Cpp->>Rust: call RustFuture poll fn
+    Rust->>Cpp: call future callback
+  end
+
+  Cpp->>+Rust: call RustFuture complete fn
+  Rust-->>-Cpp: return result
+  Cpp->>Rust: call RustFuture free fn
+  Cpp->>Js: resolve promise

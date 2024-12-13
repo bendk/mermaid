@@ -1,0 +1,36 @@
+block-beta
+  columns 2
+  block:UserLayer
+    columns 1
+    UserCodeTitle["User code"]
+    RustUser["Rust user function"]
+  end
+  block:JsLayer
+    columns 1
+    GeckoJsTitle["uniffi-bindgen-gecko-js"]
+    Js["JS Layer"]
+    space
+    Cpp["C++ Layer"]
+  end
+  block:ScaffoldingLayer:2
+    columns 2
+    space
+    UniffiBindgenTitle["uniffi-bindgen"]
+    Rust["Rust Scaffolding"]
+    space
+  end
+
+  RustUser --"Lower"--> Rust
+  Rust --"Lift"--> Cpp
+  Cpp --"Lift"--> Js
+
+classDef default stroke:transparent,fill:#fff
+classDef layer stroke:#c0c0c0,fill:#cae9ff
+classDef title stroke:transparent,fill:transparent,color:#f72585
+classDef invisible stroke:transparent,fill:transparent
+class JsLayer layer
+class ScaffoldingLayer layer
+class UserLayer layer
+class GeckoJsTitle title
+class UniffiBindgenTitle title
+class UserCodeTitle title
