@@ -1,0 +1,15 @@
+sequenceDiagram
+  participant AsyncRust as Async Rust code
+  participant SyncRust as Sync Rust code
+  participant WorkerQueue as Work Queue Callback Interface
+  participant Http as Http Callback Interface
+  participant Foreign as Foreign language code
+
+  Foreign->>+AsyncRust: Start async API call
+  AsyncRust->>+Http: await method of Http callback interface
+  Http-->>-AsyncRust: Return HTTP response
+  Note over AsyncRust: Create oneshot channel<br/>and deseralization task
+  AsyncRust->>WorkerQueue: Schedule task
+  WorkerQueue->>SyncRust: Run task (in background thread)
+  SyncRust->>AsyncRust: Send result via oneshot channel
+  AsyncRust-->>-Foreign: Return API result
