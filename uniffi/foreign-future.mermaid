@@ -1,0 +1,6 @@
+sequenceDiagram
+    Rust Scaffolding ->>+ Foreign bindings: VTable method call
+    Foreign bindings ->> Callback method implementation: Async function call
+    Callback method implementation ->> Foreign bindings: Async function call completes
+    Foreign bindings ->>- Rust Scaffolding: Complete future call
+    Rust Scaffolding ->>+ Foreign bindings: Future dropped call
