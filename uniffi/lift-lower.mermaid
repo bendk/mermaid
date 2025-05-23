@@ -1,0 +1,34 @@
+block-beta
+  columns 2
+  block:RustLayer
+    columns 1
+    RustTitle["Rust"]
+    RustString["String"]
+  end
+  block:PythonLayer
+    columns 1
+    PythonTitle["Python"]
+    PythonStr["str"]
+  end
+  block:FFILayer:2
+    columns 3
+    space:2
+    FfiTitle["FFI"]
+    space
+    RustBuffer["RustBuffer"]
+    space
+  end
+
+  RustString --"Lower"--> RustBuffer
+  RustBuffer --"Lift"--> PythonStr
+
+classDef default stroke:transparent,fill:#fff
+classDef layer stroke:#c0c0c0,fill:#cae9ff
+classDef title stroke:transparent,fill:transparent,color:#f72585
+classDef invisible stroke:transparent,fill:transparent
+class RustLayer layer
+class PythonLayer layer
+class FFILayer layer
+class RustTitle title
+class PythonTitle title
+class FfiTitle title
