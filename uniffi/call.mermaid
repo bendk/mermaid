@@ -1,0 +1,34 @@
+block-beta
+  columns 2
+  block:PythonUserLayer
+    columns 1
+    PythonTitle["Generated Python function"]
+    PythonFunc["add_to_list(int) -> [int]"]
+  end
+  block:RustUserLayer
+    columns 1
+    RustTitle["User-defined Rust Function"]
+    RustFunc["add_to_list(i32) -> Vec<i32>"]
+  end
+  space:2
+  block:ScaffoldingLayer:2
+    columns 1
+    ScaffoldingFunc["uniffi_fn_add_to_list(int32_t) -> RustBuffer"]
+    ScaffoldingTitle["Generated Rust scaffolding function"]
+  end
+
+  PythonFunc -- "Lower" --> ScaffoldingFunc
+  ScaffoldingFunc -- "Lift" --> RustFunc
+
+classDef default stroke:transparent,fill:#fff
+classDef layer stroke:#c0c0c0,fill:#cae9ff
+classDef title stroke:transparent,fill:transparent,color:#f72585
+classDef invisible stroke:transparent,fill:transparent
+
+class PythonUserLayer layer
+class RustUserLayer layer
+class ScaffoldingLayer layer
+
+class RustTitle title
+class PythonTitle title
+class ScaffoldingTitle title
