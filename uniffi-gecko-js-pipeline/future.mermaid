@@ -1,0 +1,15 @@
+flowchart TD
+  SR(Rust source code)
+  U[uniffi-bindgen-gecko-js]
+  GJS(Generated JavaScript)
+  GR(Generated Rust)
+  GCPP(Generated C++)
+
+  SR:::input --> U
+  U:::process --> GR:::output
+  U:::process --> GCPP:::output
+  U:::process --> GJS:::output
+
+  classDef input fill:#F9DC5C
+  classDef process fill:#E38F96
+  classDef output fill:#A4CAFF

@@ -1,0 +1,20 @@
+flowchart TD
+  SR(Rust source code)
+  SW(UniFFI.webidl)
+  U[uniffi-bindgen-gecko-js]
+  W[WebIDL code generation]
+  GJS(Generated JavaScript)
+  GR(Generated Rust)
+  GCPP(UniFFI Generated C++)
+  GCPPW(WebIDL Generated C++)
+
+  SR:::input --> U
+  SW:::input --> W
+  U:::process --> GR:::output
+  U:::process --> GCPP:::output
+  U:::process --> GJS:::output
+  W:::process --> GCPPW:::output
+
+  classDef input fill:#F9DC5C
+  classDef process fill:#E38F96
+  classDef output fill:#A4CAFF
